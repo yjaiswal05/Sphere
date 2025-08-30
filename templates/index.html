@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Domain Verifier</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-envelope-check"></i> Domain Verifier
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h2 class="text-center mb-0">Email Domain Verification Tool</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center mb-4">
+                            Verify the configuration of an email domain by checking MX, SPF, and DMARC records.
+                        </p>
+
+                        <form id="verificationForm">
+                            <div class="mb-3">
+                                <label for="domain" class="form-label">Domain Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-globe"></i></span>
+                                    <input type="text" class="form-control" id="domain" placeholder="example.com" required>
+                                </div>
+                                <div class="form-text">Enter the domain without 'http://' or 'www.'</div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary" id="verifyButton">
+                                    <span id="spinnerIcon" class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true"></span>
+                                    Verify Domain
+                                </button>
+                            </div>
+                        </form>
+
+                        <div id="loadingMessage" class="alert alert-info mt-4 d-none">
+                            <i class="bi bi-info-circle me-2"></i> Verifying domain records. This may take a few moments...
+                        </div>
+
+                        <div id="errorMessage" class="alert alert-danger mt-4 d-none">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <span id="errorContent"></span>
+                        </div>
+
+                        <div id="resultContainer" class="mt-4 d-none">
+                            <h3 class="mb-3">Verification Results for <span id="resultDomain"></span></h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">MX Records</th>
+                                            <td id="mxStatus"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">SPF Records</th>
+                                            <td id="spfStatus"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">DMARC Records</th>
+                                            <td id="dmarcStatus"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="mt-4" id="recordDetails">
+                                <h4>Record Details</h4>
+                                <div class="mb-3">
+                                    <h5>SPF Record</h5>
+                                    <div class="bg-dark p-3 rounded overflow-auto" id="spfRecord">
+                                        <code>No SPF record found</code>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>DMARC Record</h5>
+                                    <div class="bg-dark p-3 rounded overflow-auto" id="dmarcRecord">
+                                        <code>No DMARC record found</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <h4>What does this mean?</h4>
+                                <p>
+                                    <strong>MX Records:</strong> Mail Exchange records specify which mail servers are responsible for receiving email messages on behalf of your domain.
+                                </p>
+                                <p>
+                                    <strong>SPF Records:</strong> Sender Policy Framework is a DNS TXT record that specifies which mail servers are authorized to send emails on behalf of your domain.
+                                </p>
+                                <p>
+                                    <strong>DMARC Records:</strong> Domain-based Message Authentication, Reporting, and Conformance provides domain owners with more control over how their emails are authenticated and how unauthenticated emails should be treated.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 mt-5 bg-dark">
+        <div class="container text-center">
+            <p class="mb-0 text-muted">© 2023 Email Domain Verifier - Check your email domain configuration</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

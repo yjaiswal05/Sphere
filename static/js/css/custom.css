@@ -1,0 +1,47 @@
+/* Additional custom styles */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    background-color: rgba(33, 37, 41, 0.8);
+}
+
+.overflow-auto {
+    max-height: 150px;
+}
+
+code {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.table th {
+    width: 30%;
+}
+
+/* Animation for loading indicator */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#loadingMessage {
+    animation: pulse 1.5s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .table th {
+        width: 40%;
+    }
+}
